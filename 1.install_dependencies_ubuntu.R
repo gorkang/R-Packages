@@ -22,8 +22,15 @@
 if (!require('rstudioapi')) install.packages('rstudioapi'); library('rstudioapi')
 
 # INSTALAR Dependencias
-command_to_execute = "sudo -kS apt-get -y install pandoc pandoc-citeproc libxml2-dev r-base-dev default-jdk libcurl4-gnutls-dev libgsl0-dev libssl-dev libv8-dev libcairo2-dev texlive-xetex git libudunits2-dev libmagick++-dev libsecret-1-dev libsodium-dev libtesseract-dev libleptonica-dev tesseract-ocr-eng ssh-askpass-gnome ssh-askpass libarchive-dev"
+command_to_execute = "sudo -kS apt-get -y install docker.io pandoc pandoc-citeproc libxml2-dev r-base-dev default-jdk libcurl4-gnutls-dev libgsl0-dev libssl-dev libv8-dev libcairo2-dev git libudunits2-dev libmagick++-dev libsecret-1-dev libsodium-dev libtesseract-dev libleptonica-dev tesseract-ocr-eng ssh-askpass-gnome ssh-askpass libarchive-dev"
+# texlive-xetex 
 system(command_to_execute, input = rstudioapi::askForPassword("sudo password"))
+
+# DOCKER
+# $ sudo usermod -aG docker $USER #Add your current user to docker group
+# $ newgrp - docker #Switch session to docker groupSwitch session to docker group
+# $ docker run hello-world #Run an example to test
+
 
 # Para que DT::datatable() funcionen bien
 # install.packages("webshot")
