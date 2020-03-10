@@ -61,22 +61,21 @@ new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"
   cat('-- Instalando/actualizando librerias Github --', fill = TRUE)
   
   # keyring (201806 - En la version de CRAN no se almacena correctamente password)
-  source("https://install-github.me/r-lib/keyring")
+  remotes::install_github("r-lib/keyring")
   
   # Selenium 201807: some of the dependencies out of CRAN
-  devtools::install_github("johndharrison/binman")
-  devtools::install_github("johndharrison/wdman")
-  # devtools::install_github("ropensci/RSelenium")
-  devtools::install_github("ropensci/rorcid")
-  devtools::install_github('rstudio/pagedown') # File -> New File -> R Markdown -> From Template -> HTML Resume {pagedown}
-  devtools::install_github("rstudio/rticles") # File -> New File -> R Markdown -> From Template -> CHOOSE JOURNAL {rticles}
-  devtools::install_github("jimhester/archive")
+  remotes::install_github("johndharrison/binman")
+  remotes::install_github("johndharrison/wdman")
+  remotes::install_github("ropensci/RSelenium")
+  
+  # Otros
+  remotes::install_github("ropensci/rorcid")
+  remotes::install_github('rstudio/pagedown') # File -> New File -> R Markdown -> From Template -> HTML Resume {pagedown}
+  remotes::install_github("rstudio/rticles") # File -> New File -> R Markdown -> From Template -> CHOOSE JOURNAL {rticles}
+  remotes::install_github("jimhester/archive")
   remotes::install_github("Displayr/flipPlots")
   remotes::install_github("dariyasydykova/tidyroc")
   remotes::install_github("edwindj/daff")
-  
-  
-  
   
   # EASYSTATS
   devtools::install_github("easystats/insight")
@@ -85,6 +84,7 @@ new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"
   devtools::install_github("easystats/report")
   devtools::install_github("easystats/effectsize")
   devtools::install_github("easystats/performance")
+  devtools::install_github("easystats/bayestestR")
   devtools::install_github("easystats/easystats")
   
   
