@@ -66,7 +66,7 @@ new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"
   # Selenium 201807: some of the dependencies out of CRAN
   remotes::install_github("johndharrison/binman")
   remotes::install_github("johndharrison/wdman")
-  remotes::install_github("ropensci/RSelenium")
+  # remotes::install_github("ropensci/RSelenium")
   
   # Otros
   remotes::install_github("ropensci/rorcid")
@@ -90,5 +90,3 @@ new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"
   
   #*******************************************************************************************
 }
-
-r.packages(install_phantomjs = FALSE, install_latex = FALSE)
