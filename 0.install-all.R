@@ -1,4 +1,10 @@
 
+# Permissions -------------------------------------------------------------
+
+# Not sure when to do it
+  # sudo chown emrys:emrys /usr/lib/R/library/ -R
+  # sudo chown emrys:emrys /usr/share/R/doc/html/ -R
+
 # INSTALL ALL -------------------------------------------------------------
 
   # Install all Ubuntu needed dependencies
@@ -8,7 +14,8 @@
   source("2.install_all_packages_std.R")
   r.packages(install_phantomjs = FALSE, 
              install_latex = FALSE, 
-             install_githubs = FALSE)
+             install_githubs = FALSE, 
+             install_easystats_dependencies = FALSE)
 
   
 

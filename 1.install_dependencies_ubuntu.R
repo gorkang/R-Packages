@@ -23,7 +23,7 @@
 if (!require('rstudioapi')) install.packages('rstudioapi'); library('rstudioapi')
 
 # INSTALAR Dependencias
-command_to_execute = "sudo -kS apt-get -y install docker.io pandoc pandoc-citeproc libxml2-dev r-base-dev default-jdk libcurl4-gnutls-dev libgfortran4 libgsl0-dev libssl-dev libv8-dev libcairo2-dev git libudunits2-dev libmagick++-dev libpoppler-cpp-dev libsecret-1-dev libsodium-dev libtesseract-dev libudunits2-dev libleptonica-dev tesseract-ocr-eng ssh-askpass-gnome ssh-askpass libarchive-dev texinfo libnode-dev libssh2-1 libssh2-1-dev libgit2-dev libzmq3-dev libfribidi-dev xsel"
+command_to_execute = "sudo -kS apt-get -y install docker.io pandoc pandoc-citeproc libxml2-dev r-base-dev default-jdk libcurl4-gnutls-dev libgfortran4 libgsl0-dev libssl-dev libv8-dev libcairo2-dev git libudunits2-dev libmagick++-dev libpoppler-cpp-dev libsecret-1-dev libsodium-dev libtesseract-dev libudunits2-dev libleptonica-dev tesseract-ocr-eng ssh-askpass-gnome ssh-askpass libavfilter-dev libarchive-dev texinfo libnode-dev libssh2-1 libssh2-1-dev libgit2-dev libzmq3-dev libfribidi-dev xsel"
 system(command_to_execute, input = rstudioapi::askForPassword("sudo password"))
 
 
