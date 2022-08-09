@@ -15,9 +15,10 @@
 
 
 # 2) Change repo in RStudio:
-  
-  options(repos = c(CRAN = rstudio_binary_repo))
+    options(repos = c(CRAN = rstudio_binary_repo))
   # OR manually Tools -> GlobalOptions -> Packages
+    
+  # OLD ONE: # options(repos = c(CRAN = "https://cran.rstudio.com"))
   
   # CHECK Which one is the repo used?
   getOption("repos")
