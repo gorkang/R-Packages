@@ -8,28 +8,30 @@
     # Click the Setup button from the top menu and follow the instructions to reconfigure R (or RStudio) to use PPM as your CRAN repository.
 
   # REPO for Ubuntu 20.04:
-  rstudio_binary_repo = "https://packagemanager.rstudio.com/all/__linux__/focal/latest"
+  # rstudio_binary_repo = "https://packagemanager.rstudio.com/all/__linux__/focal/latest"
 
   # 22.04:
-  # rstudio_binary_repo = "https://packagemanager.rstudio.com/all/__linux__/jammy/latest"
+  rstudio_binary_repo = "https://packagemanager.rstudio.com/all/__linux__/jammy/latest"
 
 
 # 2) Change repo in RStudio:
     options(repos = c(CRAN = rstudio_binary_repo))
   # OR manually Tools -> GlobalOptions -> Packages
     
-  # OLD ONE: # options(repos = c(CRAN = "https://cran.rstudio.com"))
+  # OLD ONE: 
+    # options(repos = c(CRAN = "https://cran.rstudio.com"))
   
   # CHECK Which one is the repo used?
   getOption("repos")
 
-  # If repo does not change, go to file and comment out
+  # If repo does not change, go to file and comment out (NEED sudo)
     #local({
     #    r <- getOption("repos")
     #    r["CRAN"] <- "https://cloud.r-project.org"
     #    options(repos = r)
     #})
-  rstudioapi::navigateToFile("/usr/lib/R/etc/Rprofile.site")
+  # rstudioapi::navigateToFile("/usr/lib/R/etc/Rprofile.site")
+  system("sudo gedit /usr/lib/R/etc/Rprofile.site")
   
   
 # 3) Install all dependencies? Or just ignore and go with our own "1.install_dependencies_ubuntu.R"

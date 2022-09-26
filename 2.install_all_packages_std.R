@@ -33,7 +33,7 @@ r.packages <- function(list.of.packages = NA, install_phantomjs = FALSE, install
         "tabulizer", "tarchetypes", "targets", "textreadr", "tictoc", "tidyverse", "tidygraph", "tinytex", "tm",
         "units",
         "vdiffr", "vroom",
-        "webshot", "wordcloud2", "writexl",
+        "webshot2", "wordcloud2", "writexl",
         "yarrr",
         
         
@@ -48,8 +48,9 @@ new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"
 
   
   if (install_phantomjs == TRUE) {
+    # Only for old webshot? Now we use webshot2
     # DT tables 
-    webshot::install_phantomjs()
+    # webshot::install_phantomjs(force = TRUE)
   }
   
   if (install_latex == TRUE) {
