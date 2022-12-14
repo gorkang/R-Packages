@@ -39,4 +39,11 @@
   # deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran40/ #40 for 4.0.x
   
   
+
+# ISSUES ------------------------------------------------------------------
+
+# If issues updating Matrix package:
+    
+# sudo chown username:username /usr/lib/R/library/Matrix/ -R
+  
   
