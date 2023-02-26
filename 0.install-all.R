@@ -38,6 +38,15 @@
   # sudo gedit /etc/apt/sources.list
   # deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran40/ #40 for 4.0.x
   
+  # update indices
+  sudo apt update -qq
+  # install two helper packages we need
+  sudo apt install --no-install-recommends software-properties-common dirmngr
+  # add the signing key (by Michael Rutter) for these repos
+  wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+  # add the R 4.0 repo from CRAN -- adjust 'focal' to 'groovy' or 'bionic' as needed
+  sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+  
   
 
 # ISSUES ------------------------------------------------------------------

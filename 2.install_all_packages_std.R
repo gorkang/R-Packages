@@ -17,18 +17,18 @@ r.packages <- function(list.of.packages = NA, install_phantomjs = FALSE, install
         "daff", "DataExplorer", "datapasta", "data.table", "devtools", "dflow", "DiagrammeR", "distill", "doBy",
         "effectsize", "esvis", "esquisse", "Exact", "exifr", "eyelinker",
         "fitdistrplus", "findviews", "forcats", "formattable", "furrr",
-        "ggalluvial", "ggcorrplot", "gghighlight", "ggmap", "ggnetwork", "ggpubr", "ggraph", "ggridges", "ggthemes", "gmodels", "googlesheets4", "gsheet", "gt", "gtExtras", "gtsummary",
+        "ggalluvial", "ggcorrplot", "gghighlight", "ggmap", "ggnetwork", "ggpubr", "ggraph", "ggridges", "ggthemes", "gmodels", "googlesheets4", "gt", "gtExtras", "gtsummary",
         "hashids", "hrbrthemes",
         "igraph", "insight", "inspectdf", "irr",
         "janitor",
         "keyring",
         "lavaan", "likert", "lme4", "logspline", "lsr", "ltm",
-        "magick", "mailR", "MASS", "mediation", "memoise", "microbenchmark", "miniCRAN", "MVN",
+        "magick", "mailR", "MASS", "mediation", "memoise", "microbenchmark", "miniCRAN", "munsell", "MVN", # munsell is a non-declared afex dependency?
         "naniar",
         "optmatch",
-        "pacman", "pagedown", "papaja", "parameters", "performance", "personograph", "pingr", "plotly", "plotrix", "powerMediation", "prereg", "psych", "pwr",
+        "pagedown", "papaja", "parameters", "performance", "pingr", "plotly", "plotrix", "powerMediation", "prereg", "psych", "pwr", #"personograph", 
         "qdapRegex",
-        "rAltmetric", "rcmdcheck", "rcrossref", "readODS", "regclass", "renv", "report", "reshape2", "retractcheck", "riskyr", "rmarkdown", "Rmisc", "rorcid", "roxygen2", "RSelenium", "rstan", "rstanarm", "rstudioapi", "rticles", "rtweet",
+        "rAltmetric", "rcmdcheck", "rcrossref", "readODS", "regclass", "remotes", "renv", "report", "reshape2", "retractcheck", "riskyr", "rmarkdown", "Rmisc", "rorcid", "roxygen2", "RSelenium", "rstan", "rstanarm", "rstudioapi", "rticles", "rtweet",
         "scholar", "see", "semPlot", "sjPlot", "sjstats", "skimr", "slider", "sqldf", "stargazer", "statcheck", "stringr", "stringi", "survival", 
         "tabulizer", "tarchetypes", "targets", "textreadr", "tictoc", "tidyverse", "tidygraph", "tinytex", "tm",
         "units",
@@ -41,9 +41,9 @@ r.packages <- function(list.of.packages = NA, install_phantomjs = FALSE, install
 }
   
 
-new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+  new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
   if (length(new.packages)) cat("Instalando ", length(new.packages), " libreria/s: " , new.packages)
-  if (length(new.packages)) install.packages(new.packages, dependencies = TRUE) # Si falla, quitar , dependencies = TRUE
+  if (length(new.packages)) install.packages(new.packages, dependencies = TRUE, lib = Sys.getenv("R_LIBS_USER")) # Si falla, quitar , dependencies = TRUE
   cat('-- Todas las librerias han sido instaladas/actualizadas --', fill = TRUE)
 
   

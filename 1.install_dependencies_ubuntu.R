@@ -1,5 +1,7 @@
 # Dependencias UBUNTU -----------------------------------------------------
 
+  # libxtst6 libxt6 # PARA jsychHelpeR
+  # libzmq3-dev clustermq
   # pandoc-citeproc # Render bookdown via terminal?
   # libxml2-dev # Para instalar XLConnect
   # r-base-dev default-jdk # Para instalar rJava (dependencia de XLConnect t de mailR) #r-cran-rjava 
@@ -21,10 +23,15 @@
   # libarchive-dev # jimhester/archive
   # texinfo # Avoid WARNING when building packages
   # libssh2-1 libssh2-1-dev : build R packages
+
+  #libgfortran4 DOES NOT EXIST?
+  
 if (!require('rstudioapi')) install.packages('rstudioapi'); library('rstudioapi')
 
 # INSTALAR Dependencias
-command_to_execute = "sudo -kS apt-get -y install docker.io pandoc pandoc-citeproc libxml2-dev r-base-dev default-jdk libcurl4-gnutls-dev libgfortran4  libglpk-dev libgsl0-dev libssl-dev libv8-dev libcairo2-dev git libudunits2-dev libmagick++-dev libpoppler-cpp-dev libsecret-1-dev libsodium-dev libtesseract-dev libudunits2-dev libleptonica-dev tesseract-ocr-eng ssh-askpass-gnome ssh-askpass libavfilter-dev libarchive-dev texinfo libnode-dev libssh2-1 libssh2-1-dev libgit2-dev libzmq3-dev libfribidi-dev xsel"
+command_to_execute = "sudo -kS apt-get -y install libxtst6 libxt6 docker.io pandoc pandoc-citeproc libxml2-dev r-base-dev default-jdk libcurl4-gnutls-dev  libglpk-dev libgsl0-dev libssl-dev libv8-dev libcairo2-dev git libudunits2-dev libmagick++-dev libpoppler-cpp-dev libsecret-1-dev libsodium-dev libtesseract-dev libudunits2-dev libleptonica-dev tesseract-ocr-eng ssh-askpass-gnome ssh-askpass libavfilter-dev libarchive-dev texinfo libnode-dev libssh2-1 libssh2-1-dev libgit2-dev libzmq3-dev libfribidi-dev xsel"
+# libssl-dev libglpk-dev libxtst6 libxt6 pandoc pandoc-citeproc ### MIN to run jsPsychHelpeR
+
 system(command_to_execute, input = rstudioapi::askForPassword("sudo password"))
 
 
