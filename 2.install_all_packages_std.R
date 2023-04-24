@@ -3,6 +3,10 @@ r.packages <- function(list.of.packages = NA, install_phantomjs = FALSE, install
 
   # Use all but one of the computer cores. See http://blog.jumpingrivers.com/posts/2017/speed_package_installation/
   if (!require('parallel')) install.packages('parallel')
+  
+  if (!require('pak')) install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))
+  
+  
   options(Ncpus = parallel::detectCores() - 2)
   
   # Si no se introduce ningun paquete, instala/carga todos
@@ -12,9 +16,9 @@ r.packages <- function(list.of.packages = NA, install_phantomjs = FALSE, install
     list.of.packages <-
       c("Rmisc", 
         "afex", "anytime", "apaTables",
-        "BayesFactor", "BayesianReasoning", "bayestestR", "beanplot", "beepr", "bitops", "blastula", "bookdown", "brms", "bs4Dash",
+        "BayesFactor", "BayesianReasoning", "bayestestR", "beanplot", "beepr", "bench", "bitops", "blastula", "bookdown", "brms", "bs4Dash",
         "clock", "clustermq", "compareDF", "corrplot", "corrr", "cranlogs", "curl",
-        "daff", "DataExplorer", "datapasta", "data.table", "devtools", "dflow", "DiagrammeR", "distill", "doBy",
+        "DataExplorer", "datapasta", "data.table", "devtools", "DiagrammeR", "distill", "doBy", #"daff", "dflow",
         "effectsize", "esvis", "esquisse", "Exact", "exifr", "eyelinker",
         "fitdistrplus", "findviews", "forcats", "formattable", "furrr",
         "ggalluvial", "ggcorrplot", "gghighlight", "ggmap", "ggnetwork", "ggpubr", "ggraph", "ggridges", "ggthemes", "gmodels", "googlesheets4", "gt", "gtExtras", "gtsummary",
@@ -28,22 +32,29 @@ r.packages <- function(list.of.packages = NA, install_phantomjs = FALSE, install
         "optmatch",
         "pagedown", "papaja", "parameters", "performance", "pingr", "plotly", "plotrix", "powerMediation", "prereg", "psych", "pwr", #"personograph", 
         "qdapRegex",
-        "rAltmetric", "rcmdcheck", "rcrossref", "readODS", "regclass", "remotes", "renv", "report", "reshape2", "retractcheck", "riskyr", "rmarkdown", "Rmisc", "rorcid", "roxygen2", "RSelenium", "rstan", "rstanarm", "rstudioapi", "rticles", "rtweet",
+        "rcmdcheck", "rcrossref", "readODS", "regclass", "remotes", "renv", "report", "reshape2", "riskyr", "rmarkdown", "Rmisc", "rorcid", "roxygen2", "RSelenium", "rstan", "rstanarm", "rstudioapi", "rticles", "rtweet", #"rAltmetric",  "retractcheck",
         "scholar", "see", "semPlot", "sjPlot", "sjstats", "skimr", "slider", "sqldf", "stargazer", "statcheck", "stringr", "stringi", "survival", 
-        "tabulizer", "tarchetypes", "targets", "textreadr", "tictoc", "tidyverse", "tidygraph", "tinytex", "tm",
+        "tarchetypes", "targets", "tictoc", "tidyverse", "tidygraph", "tinytex", "tm", #"textreadr",
         "units",
         "vdiffr", "vroom",
         "webshot2", "wordcloud2", "writexl",
         "yarrr",
         
         
-        "bindrcpp", "flipPlots")
+        "bindrcpp") #, "flipPlots"
 }
   
 
   new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
-  if (length(new.packages)) cat("Instalando ", length(new.packages), " libreria/s: " , new.packages)
-  if (length(new.packages)) install.packages(new.packages, dependencies = TRUE, lib = Sys.getenv("R_LIBS_USER")) # Si falla, quitar , dependencies = TRUE
+  if (length(new.packages)) {
+    cat("Instalando ", length(new.packages), " libreria/s: " , new.packages)
+    pak::pak(pkg = new.packages)
+    # install.packages(new.packages, dependencies = TRUE, lib = Sys.getenv("R_LIBS_USER")) # Si falla, quitar , dependencies = TRUE
+  }
+  
+  
+  
+  
   cat('-- Todas las librerias han sido instaladas/actualizadas --', fill = TRUE)
 
   
@@ -61,45 +72,46 @@ r.packages <- function(list.of.packages = NA, install_phantomjs = FALSE, install
   
 
   # Exceptions --------------------------------------------------------------
-
+  # "tabulizer", 
   if (install_githubs == TRUE) {
     cat('-- Instalando/actualizando librerias Github --', fill = TRUE)
     
     # Grateful
-    remotes::install_github("Pakillo/grateful")
+    pak::pak("Pakillo/grateful")
     
     
     # Papaja
-    # remotes::install_github("crsh/papaja")
+    # pak::pak("crsh/papaja")
     
     # Waffle plots (the CRAN version is a different one)  
-    remotes::install_github("hrbrmstr/waffle")
+    pak::pak("hrbrmstr/waffle")
       
     # keyring (201806 - En la version de CRAN no se almacena correctamente password)
-    remotes::install_github("r-lib/keyring")
+    # pak::pak("r-lib/keyring")
     
     # Selenium 201807: some of the dependencies out of CRAN
-    remotes::install_github("johndharrison/binman")
-    remotes::install_github("johndharrison/wdman")
-    # remotes::install_github("ropensci/RSelenium")
+    # pak::pak("johndharrison/binman")
+    # pak::pak("johndharrison/wdman")
+    # pak::pak("ropensci/RSelenium")
     
     # CRAN version not available 202009
-    devtools::install_github("ndphillips/FFTrees", build_vignettes = TRUE)
+    pak::pak("ndphillips/FFTrees", build_vignettes = TRUE)
     
     # Otros
-    remotes::install_github("jimhester/archive")
-    remotes::install_github("edwindj/daff")
-    remotes::install_github("Displayr/flipPlots")
-    remotes::install_github("gadenbuie/shrtcts") # Keybindings and shorcuts: https://github.com/MilesMcBain/nycr_meetup_talk
-    remotes::install_github("dariyasydykova/tidyroc")
-    remotes::install_github('jorvlan/raincloudplots')
-    devtools::install_github("jmablog/tinieR")
+    pak::pak("jimhester/archive")
+    pak::pak("edwindj/daff")
+    pak::pak("Displayr/flipPlots")
+    pak::pak("gadenbuie/shrtcts") # Keybindings and shorcuts: https://github.com/MilesMcBain/nycr_meetup_talk
+    pak::pak("dariyasydykova/tidyroc")
+    pak::pak('jorvlan/raincloudplots')
+    pak::pak(c("ropensci/tabulizerjars", "ropensci/tabulizer"))
+    pak::pak("jmablog/tinieR")
     
-    remotes::install_github("gaborcsardi/secret")
+    pak::pak("gaborcsardi/secret")
     
     # ON Cran
-    # remotes::install_github("ropensci/rorcid")
-    # remotes::install_github("rstudio/rticles") # File -> New File -> R Markdown -> From Template -> CHOOSE JOURNAL {rticles}
+    # pak::pak("ropensci/rorcid")
+    # pak::pak("rstudio/rticles") # File -> New File -> R Markdown -> From Template -> CHOOSE JOURNAL {rticles}
     
     
     # EASYSTATS

@@ -1,9 +1,20 @@
 
 # Permissions -------------------------------------------------------------
 
-# Not sure when to do it
-  # sudo chown emrys:emrys /usr/lib/R/library/ -R
-  # sudo chown emrys:emrys /usr/share/R/doc/html/ -R
+# When there are packages installed as root, and start getting errors such as:
+# "namespace ‘package’ x.x.x is already loaded, but >= y.y.y is required"
+
+# .libPaths() # Folders where libraries are installed
+  # sudo chown emrys:emrys /usr/lib/R/library/ * -R
+  # sudo chown emrys:emrys /usr/local/lib/R/site-library * -R
+  # sudo chown emrys:emrys /usr/share/R/doc/html/ * -R
+
+  # UNSAFE VERSION: sudo chmod -R 0777 '/usr/lib/R/library'
+
+# If still getting issues when installing packages depending on eachother, e.g. rlang, and vctrs:
+  # - install from source
+  # - renv::install("nameOfPackage")
+
 
 # INSTALL ALL -------------------------------------------------------------
 
