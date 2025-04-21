@@ -16,40 +16,44 @@ r.packages <- function(list.of.packages = NA, install_phantomjs = FALSE, install
     list.of.packages <-
       c("Rmisc", 
         "afex", "anytime", "apaTables",
-        "BayesFactor", "BayesianReasoning", "bayestestR", "beanplot", "beepr", "bench", "bitops", "blastula", "bookdown", "brms", "bs4Dash",
-        "clock", "clustermq", "compareDF", "corrplot", "corrr", "cranlogs", "curl",
-        "DataExplorer", "datapasta", "data.table", "DBI", "devtools", "DiagrammeR", "distill", "doBy", #"daff", "dflow",
+        "BayesFactor", "BayesianReasoning", "bayestestR", "beanplot", "beepr", "bench", "bitops", "blastula", "bookdown", "brms", "broom.mixed", "bs4Dash",
+        "clock", "clustermq", "compareDF", "corrplot", "corrr", "covr", "cranlogs", "curl",
+        "DataExplorer", "datapasta", "data.table", "DBI", "devtools", "DiagrammeR", "diffviewer", "distill", "doBy", #"daff", "dflow",
         "easystats", "effectsize", "esvis", "esquisse", "Exact", "exifr", "eyelinker",
         "fitdistrplus", "findviews", "forcats", "formattable", "furrr",
-        "ggalluvial", "ggcorrplot", "gghighlight", "ggmap", "ggnetwork", "ggpubr", "ggraph", "ggridges", "ggthemes", "gmodels", "googlesheets4", "gt", "gtExtras", "gtsummary",
-        "hashids", "hrbrthemes",
+        "gapminder", "ggalluvial", "ggcorrplot", "gghighlight", "ggmap", "ggnetwork", "ggpubr", "ggrain", "ggraph", "ggridges", "ggthemes", "gmodels", "googlesheets4", "grateful", "gt", "gtExtras", "gtsummary",
+        "hashids", "hexbin", "hrbrthemes",
         "igraph", "insight", "inspectdf", "irr",
         "janitor",
-        "keyring",
+        "kableExtra", "keyring",
         "lavaan", "likert", "lme4", "logspline", "lsr", "ltm",
         "magick", "mailR", "MASS", "mediation", "memoise", "microbenchmark", "miniCRAN", "munsell", "MVN", # munsell is a non-declared afex dependency?
         "naniar",
-        "odbc", "optmatch",
-        "pagedown", "papaja", "parameters", "patchwork", "performance", "pingr", "plotly", "plotrix", "powerMediation", "prereg", "psych", "pwr", #"personograph", 
+        "odbc", "openmeteo", "optmatch",
+        "pagedown", "papaja", "parameters", "patchwork", "pdftools", "performance", "pingr", "plotly", "plotrix", "powerMediation", "prereg", "psych", "pwr", #"personograph",
         "qdapRegex", "quarto",
-        "rcmdcheck", "rcrossref", "readODS", "regclass", "remotes", "renv", "report", "reshape2", "riskyr", "rmarkdown", "Rmisc", "rorcid", "roxygen2", "RSelenium", "rstan", "rstanarm", "rstudioapi", "rticles", "rtweet", #"rAltmetric",  "retractcheck",
-        "scholar", "see", "semPlot", "sjPlot", "sjstats", "skimr", "slider", "sqldf", "stargazer", "statcheck", "stringr", "stringi", "styler", "survival", 
+        "ragg", "rcmdcheck", "rcrossref", "readODS", "remotes", "renv", "report", "reshape2", "riskyr", "rmarkdown", "Rmisc", "rorcid", "roxygen2", "RSelenium", "rsconnect", "rstudioapi", "rticles", #"rtweet", #"rAltmetric",  "retractcheck",
+        "scholar", "secret", "see", "semPlot", "sjPlot", "sjstats", "skimr", "slider", "sqldf", "stargazer", "statcheck", "stringr", "stringi", "styler", "survival",
         "tarchetypes", "targets", "tictoc", "tidyverse", "tidygraph", "tinytex", "tm", #"textreadr",
         "units",
         "vdiffr", "vroom",
         "webshot2", "wordcloud2", "writexl",
         "yarrr",
         
+        # Very long compilation
+        "regclass", "rstan", 
+        # "rstanarm",
         
         "bindrcpp") #, "flipPlots"
 }
-  
+  # 
 
   new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
   if (length(new.packages)) {
     cat("Instalando ", length(new.packages), " libreria/s: " , new.packages)
     pak::pak(pkg = new.packages)
     # install.packages(new.packages, dependencies = TRUE, lib = Sys.getenv("R_LIBS_USER")) # Si falla, quitar , dependencies = TRUE
+    # install.packages(new.packages, dependencies = TRUE) 
   }
   
   
@@ -70,6 +74,10 @@ r.packages <- function(list.of.packages = NA, install_phantomjs = FALSE, install
   }
   
   
+  # if (install_ragg == TRUE) {
+  #   pak::pak('r-lib/ragg')
+  # }
+  
 
   # Exceptions --------------------------------------------------------------
   # "tabulizer", 
@@ -77,7 +85,7 @@ r.packages <- function(list.of.packages = NA, install_phantomjs = FALSE, install
     cat('-- Instalando/actualizando librerias Github --', fill = TRUE)
     
     # Grateful
-    pak::pak("Pakillo/grateful")
+    # pak::pak("Pakillo/grateful")
     
     
     # Papaja
@@ -95,19 +103,18 @@ r.packages <- function(list.of.packages = NA, install_phantomjs = FALSE, install
     # pak::pak("ropensci/RSelenium")
     
     # CRAN version not available 202009
-    pak::pak("ndphillips/FFTrees", build_vignettes = TRUE)
+    pak::pak("ndphillips/FFTrees")
     
     # Otros
     pak::pak("jimhester/archive")
     pak::pak("edwindj/daff")
-    pak::pak("Displayr/flipPlots")
+    # pak::pak("Displayr/flipPlots")
     pak::pak("gadenbuie/shrtcts") # Keybindings and shorcuts: https://github.com/MilesMcBain/nycr_meetup_talk
     pak::pak("dariyasydykova/tidyroc")
-    pak::pak('jorvlan/raincloudplots')
     pak::pak(c("ropensci/tabulizerjars", "ropensci/tabulizer"))
     pak::pak("jmablog/tinieR")
-    
-    pak::pak("gaborcsardi/secret")
+    pak::pak("gadenbuie/regexplain")
+    # pak::pak("gaborcsardi/secret")
     
     # ON Cran
     # pak::pak("ropensci/rorcid")
@@ -125,6 +132,6 @@ r.packages <- function(list.of.packages = NA, install_phantomjs = FALSE, install
     
   }
   
-  if (install_easystats_dependencies == TRUE) easystats::model_dashboard(model)
+  if (install_easystats_dependencies == TRUE) easystats::install_suggested()
   
 }

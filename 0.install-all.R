@@ -22,12 +22,14 @@
   source("1.install_dependencies_ubuntu.R") # Will ask for sudo password
   
   # Load r.packages()
+  # pak::pak_cleanup()
   source("2.install_all_packages_std.R")
   r.packages(install_phantomjs = FALSE, 
              install_latex = FALSE, 
              install_githubs = FALSE, 
              install_easystats_dependencies = FALSE)
 
+  # sudo apt install ttf-mscorefonts-installer
   
 
 # UPDATE packages --------------------------------------------------------

@@ -9,7 +9,7 @@
 
 
 # 2) Change repo in RStudio:
-    options(repos = c(CRAN = "https://packagemanager.rstudio.com/all/__linux__/jammy/latest"))
+    options(repos = c(CRAN = "https://packagemanager.posit.co/all/__linux__/jammy/latest"))
   # OR manually Tools -> GlobalOptions -> Packages
     
   # OLD ONE: 
